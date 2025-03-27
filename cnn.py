@@ -11,7 +11,6 @@ from tempfile import TemporaryDirectory
 import json
 import wandb
 
-
 class CNN(nn.Module):
     """Convolutional Neural Network model for image classification."""
 
@@ -90,20 +89,29 @@ class CNN(nn.Module):
             
         
         # WANDB
-        run = wandb.init(
-            # Set the wandb entity where your project will be logged (generally your team name).
+        if wandb.run is not None:
+            wandb.finish()
+        wandb.init(
             entity="guillaume_-universidad-pontificia-comillas",
-            # Set the wandb project where this run will be logged.
             project="machine_learning_II_CNN",
-            # Track hyperparameters and run metadata.
-            config={
-                "model": self.base_model.__class__.__name__,
-                "learning_rate": optimizer.param_groups[0]["lr"],
-                "criterion": criterion.__class__.__name__,
-                "epochs": epochs,
-                "unfreezed_layer": self.unfreezed_layer,
-            },
+            reinit=True  # Permite múltiples inicializaciones sin conflicto
         )
+
+        # Generar un nombre aleatorio con un ID
+        #run_id = wandb.util.generate_id()
+
+        #wandb.run.name = f"{run_name}_{run_id}"
+        
+        wandb.config.update({
+            "model": self.base_model.__class__.__name__,
+            "learning_rate": optimizer.param_groups[0]["lr"],
+            "criterion": criterion.__class__.__name__,
+            "epochs": epochs,
+            "unfreezed_layers": self.unfreezed_layer,
+            "batch_size": train_loader.batch_size,
+            "scheduler": scheduler.__class__.__name__,
+        })
+        
         with TemporaryDirectory() as temp_dir:
             best_model_path = os.path.join(temp_dir, "best_model.pt")
             best_accuracy = 0.0
@@ -169,12 +177,13 @@ class CNN(nn.Module):
                     f"Validation Accuracy: {valid_accuracy:.4f}"
                 )
 
-                run.log(
+                wandb.log(
                     {
                         "train_loss": train_loss,
                         "validation_loss": valid_loss,
                         "train_accuracy": train_accuracy,
                         "validation_accuracy": valid_accuracy,
+                        "learning_rate": optimizer.param_groups[0]["lr"]
                     }
                 )
 
@@ -193,6 +202,8 @@ class CNN(nn.Module):
                     if early_stop_counter >= patience:
                         print("Early stopping triggered.")
                         break
+                    
+            wandb.finish()
                 
             torch.save(self.state_dict(), best_model_path)
             self.load_state_dict(torch.load(best_model_path))
