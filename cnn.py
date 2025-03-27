@@ -68,7 +68,9 @@ class CNN(nn.Module):
         optimizer,
         criterion,
         epochs,
+        scheduler,
         nepochs_to_save=10,
+        patience=4
     ):
         """Train the model and save the best one based on validation accuracy.
 
@@ -83,6 +85,11 @@ class CNN(nn.Module):
         Returns:
             history: A dictionary with the training history.
         """
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.to(device) # mueve el modelo a la GPU si está disponible
+            
+        
+        # WANDB
         run = wandb.init(
             # Set the wandb entity where your project will be logged (generally your team name).
             entity="guillaume_-universidad-pontificia-comillas",
@@ -101,6 +108,7 @@ class CNN(nn.Module):
             best_model_path = os.path.join(temp_dir, "best_model.pt")
             best_accuracy = 0.0
             torch.save(self.state_dict(), best_model_path)
+            early_stop_counter = 0  # Contador de épocas sin mejora
 
             history = {
                 "train_loss": [],
@@ -108,11 +116,14 @@ class CNN(nn.Module):
                 "valid_loss": [],
                 "valid_accuracy": [],
             }
+            
             for epoch in range(epochs):
                 self.train()
                 train_loss = 0.0
                 train_accuracy = 0.0
+                
                 for images, labels in train_loader:
+                    images, labels = images.to(device), labels.to(device)
                     optimizer.zero_grad()
                     outputs = self(images)
                     loss = criterion(outputs, labels)
@@ -132,10 +143,12 @@ class CNN(nn.Module):
                     f"Train Accuracy: {train_accuracy:.4f}"
                 )
 
+                # validation data
                 self.eval()
                 valid_loss = 0.0
                 valid_accuracy = 0.0
                 for images, labels in valid_loader:
+                    images, labels = images.to(device), labels.to(device)
                     outputs = self(images)
                     loss = criterion(outputs, labels)
                     valid_loss += loss.item()
@@ -143,6 +156,10 @@ class CNN(nn.Module):
 
                 valid_loss /= len(valid_loader)
                 valid_accuracy /= len(valid_loader.dataset)
+                
+                #scheduler
+                scheduler.step(valid_loss)
+                
                 history["valid_loss"].append(valid_loss)
                 history["valid_accuracy"].append(valid_accuracy)
 
@@ -166,6 +183,17 @@ class CNN(nn.Module):
                         best_accuracy = valid_accuracy
                         torch.save(self.state_dict(), best_model_path)
 
+                # Early stopping
+                if valid_accuracy > best_accuracy:
+                    best_accuracy = valid_accuracy
+                    torch.save(self.state_dict(), best_model_path)
+                    early_stop_counter = 0  
+                else:
+                    early_stop_counter += 1
+                    if early_stop_counter >= patience:
+                        print("Early stopping triggered.")
+                        break
+                
             torch.save(self.state_dict(), best_model_path)
             self.load_state_dict(torch.load(best_model_path))
             return history
@@ -179,11 +207,17 @@ class CNN(nn.Module):
         Returns:
             predicted_labels: Predicted classes.
         """
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.to(device)
+        
         self.eval()
         predicted_labels = []
-        for images, _ in data_loader:
-            outputs = self(images)
-            predicted_labels.extend(outputs.argmax(1).tolist())
+        with torch.no_grad(): # No grad to save memory
+            for images, _ in data_loader:
+                images = images.to(device)
+                outputs = self(images)
+                predicted_labels.extend(outputs.argmax(1).tolist())
+    
         return predicted_labels
 
     def save_model(self, filename: str):
@@ -247,6 +281,7 @@ def load_data(train_dir, valid_dir, batch_size, img_size):
                 img_size
             ),  # Crop the image to a random size and aspect ratio
             transforms.RandomHorizontalFlip(),  # Horizontally flip the image with a 50% probability
+            transforms.ColorJitter(brightness=0.2, contrast=0.2), # Randomly change the brightness and contrast of the image
             transforms.ToTensor(),
         ]
     )
