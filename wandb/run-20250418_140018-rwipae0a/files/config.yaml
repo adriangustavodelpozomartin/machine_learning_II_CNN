@@ -1,0 +1,50 @@
+_wandb:
+    value:
+        cli_version: 0.19.9
+        m: []
+        python_version: 3.11.8
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 41
+                - 53
+                - 55
+            "2":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 41
+                - 53
+                - 55
+            "3":
+                - 2
+                - 23
+                - 55
+            "4": 3.11.8
+            "5": 0.19.9
+            "8":
+                - 1
+                - 2
+                - 5
+            "10":
+                - 20
+            "12": 0.19.9
+            "13": darwin-arm64
+batch_size:
+    value: 128
+criterion:
+    value: CrossEntropyLoss
+epochs:
+    value: 30
+learning_rate:
+    value: 5e-05
+model:
+    value: ResNet
+scheduler:
+    value: ReduceLROnPlateau
+unfreezed_layers:
+    value: 4
