@@ -285,6 +285,7 @@ def load_data(train_dir, valid_dir, batch_size, img_size):
         valid_loader: DataLoader with the validation dataset.
         num_classes: Number of classes in the dataset.
     """
+   
     train_transforms = transforms.Compose(
         [
             transforms.RandomRotation(30),  # Rotate the image by a random angle
@@ -297,9 +298,11 @@ def load_data(train_dir, valid_dir, batch_size, img_size):
         ]
     )
 
-    valid_transforms = transforms.Compose(
-        [transforms.Resize((img_size, img_size)), transforms.ToTensor()]
-    )
+    valid_transforms = transforms.Compose([
+    transforms.Grayscale(num_output_channels=3),  # fuerza 3 canales
+    transforms.Resize((img_size, img_size)),
+    transforms.ToTensor(),
+    ])
 
     train_data = torchvision.datasets.ImageFolder(train_dir, transform=train_transforms)
     valid_data = torchvision.datasets.ImageFolder(valid_dir, transform=valid_transforms)

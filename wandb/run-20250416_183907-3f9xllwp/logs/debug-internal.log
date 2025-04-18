@@ -1,0 +1,48 @@
+{"time":"2025-04-16T18:39:07.272263+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/Users/adriandelpozo/Desktop/MSc_BIG_DATA/MACHINE_LEARNING_II/machine_learning_II_CNN/wandb/run-20250416_183907-3f9xllwp/logs/debug-core.log"}
+{"time":"2025-04-16T18:39:07.931467+02:00","level":"INFO","msg":"created new stream","id":"3f9xllwp"}
+{"time":"2025-04-16T18:39:07.931511+02:00","level":"INFO","msg":"stream: started","id":"3f9xllwp"}
+{"time":"2025-04-16T18:39:07.931534+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"3f9xllwp"}
+{"time":"2025-04-16T18:39:07.931558+02:00","level":"INFO","msg":"handler: started","stream_id":"3f9xllwp"}
+{"time":"2025-04-16T18:39:07.931636+02:00","level":"INFO","msg":"sender: started","stream_id":"3f9xllwp"}
+{"time":"2025-04-16T18:39:08.231101+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-16T21:19:15.943744+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58254->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-16T22:00:16.961456+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58444->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-16T22:26:18.263411+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58504->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-16T23:18:14.559609+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58591->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-16T23:53:40.815558+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58663->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T00:28:23.708726+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58776->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T00:52:45.503816+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58867->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T01:29:14.51492+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58905->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T02:04:35.13372+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:58985->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T02:32:33.887558+02:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-04-17T02:50:38.144458+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": read tcp 192.168.0.40:59510->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T02:50:40.829827+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:59103->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T03:06:13.64131+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:59535->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T04:01:14.095693+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2025-04-17T04:01:16.550094+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2025-04-17T04:01:17.68284+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:59584->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T04:13:10.891962+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:59705->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T05:25:31.745605+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": read tcp 192.168.0.40:59742->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T05:25:34.593535+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:59781->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T06:03:21.037651+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:59899->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T07:16:08.987207+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:60000->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T09:05:40.023818+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:60137->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T09:34:17.075294+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:60247->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T10:08:18.185935+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:60310->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T10:52:36.760335+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.0.40:60399->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-04-17T10:54:06.133931+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2025-04-17T10:54:17.311342+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": dial tcp 35.186.228.49:443: connect: operation timed out"}
+{"time":"2025-04-17T10:54:30.574938+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": dial tcp 35.186.228.49:443: connect: operation timed out"}
+{"time":"2025-04-17T10:54:36.616549+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-04-17T10:54:49.003366+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": dial tcp 35.186.228.49:443: connect: operation timed out"}
+{"time":"2025-04-17T10:55:54.325806+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/guillaume_-universidad-pontificia-comillas/machine_learning_II_CNN/3f9xllwp/file_stream\": unexpected EOF"}
+{"time":"2025-04-17T11:11:51.858187+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-04-17T11:13:21.668549+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-17T11:13:21.668936+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-17T11:13:22.531132+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-17T11:13:22.680949+02:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 17-17, summary, console lines 35-37","runtime_seconds":0.149146542}],"total_operations":1}}
+{"time":"2025-04-17T11:13:22.796454+02:00","level":"INFO","msg":"stream: closing","id":"3f9xllwp"}
+{"time":"2025-04-17T11:13:22.796517+02:00","level":"INFO","msg":"handler: closed","stream_id":"3f9xllwp"}
+{"time":"2025-04-17T11:13:22.796531+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"3f9xllwp"}
+{"time":"2025-04-17T11:13:22.79675+02:00","level":"INFO","msg":"sender: closed","stream_id":"3f9xllwp"}
+{"time":"2025-04-17T11:13:22.796764+02:00","level":"INFO","msg":"stream: closed","id":"3f9xllwp"}

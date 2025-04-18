@@ -1,0 +1,43 @@
+{
+  "os":  "macOS-14.6.1-arm64-arm-64bit",
+  "python":  "CPython 3.11.8",
+  "startedAt":  "2025-04-16T16:39:07.269203Z",
+  "program":  "/Users/adriandelpozo/Desktop/MSc_BIG_DATA/MACHINE_LEARNING_II/machine_learning_II_CNN/03TransferLearning_colab (1).ipynb",
+  "codePath":  "03TransferLearning_colab (1).ipynb",
+  "git":  {
+    "remote":  "https://github.com/adriangustavodelpozomartin/machine_learning_II_CNN.git",
+    "commit":  "7e1c183833c3a3b4ee265f5819b15e10b4e37d00"
+  },
+  "email":  "adriangdelpozo@alu.icai.comillas.edu",
+  "root":  "/Users/adriandelpozo/Desktop/MSc_BIG_DATA/MACHINE_LEARNING_II/machine_learning_II_CNN",
+  "host":  "MacBook-Pro-de-Adrian.local",
+  "executable":  "/Applications/anaconda3/envs/ML2-2025/bin/python",
+  "codePathLocal":  "03TransferLearning_colab (1).ipynb",
+  "cpu_count":  8,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "994662584320",
+      "used":  "578464587776"
+    },
+    "/System/Volumes/Data":  {
+      "total":  "994662584320",
+      "used":  "578464587776"
+    }
+  },
+  "memory":  {
+    "total":  "17179869184"
+  },
+  "cpu":  {
+    "count":  8,
+    "countLogical":  8
+  },
+  "apple":  {
+    "name":  "Apple M3",
+    "ecpuCores":  4,
+    "pcpuCores":  4,
+    "gpuCores":  10,
+    "memoryGb":  16,
+    "ramTotalBytes":  "17179869184"
+  }
+}
