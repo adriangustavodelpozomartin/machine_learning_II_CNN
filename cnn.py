@@ -15,50 +15,62 @@ class CNN(nn.Module):
     """Convolutional Neural Network model for image classification."""
 
     def __init__(self, base_model, num_classes, unfreezed_layers=0):
-        """CNN model initializer.
-
-        Args:
-            base_model: Pre-trained model to use as the base.
-            num_classes: Number of classes in the dataset.
-            unfreezed_layers: Number of layers to unfreeze from the base model.
-
-        """
         super().__init__()
         self.base_model = base_model
         self.num_classes = num_classes
-        self.unfreezed_layer = unfreezed_layers
-        # Freeze convolutional layers
+        self.unfreezed_layers = unfreezed_layers
+
+        # Congelar todos los parámetros
         for param in self.base_model.parameters():
             param.requires_grad = False
 
-        # Unfreeze specified number of layers
+        # Descongelar las últimas N capas si se pide
         if unfreezed_layers > 0:
             for layer in list(self.base_model.children())[-unfreezed_layers:]:
                 for param in layer.parameters():
                     param.requires_grad = True
 
-        # Add a new softmax output layer
-        self.fc = nn.Sequential(
-            nn.Linear(self.base_model.fc.in_features, 1024),
+        # Detectar capa final y obtener in_features
+        in_features = None
+        replaced = False
+
+        if hasattr(base_model, 'fc') and isinstance(base_model.fc, nn.Linear):
+            in_features = base_model.fc.in_features
+            base_model.fc = nn.Identity()
+            replaced = True
+
+        elif hasattr(base_model, 'classifier'):
+            classifier = base_model.classifier
+
+            if isinstance(classifier, nn.Sequential):
+                last_layer = classifier[-1]
+                if isinstance(last_layer, nn.Linear):
+                    in_features = last_layer.in_features
+                    base_model.classifier[-1] = nn.Identity()
+                    replaced = True
+            elif isinstance(classifier, nn.Linear):
+                in_features = classifier.in_features
+                base_model.classifier = nn.Identity()
+                replaced = True
+
+        if not replaced or in_features is None:
+            raise ValueError("No se pudo identificar una capa final compatible (fc o classifier).")
+
+        # Nueva cabeza de clasificación (sin Softmax si usás CrossEntropyLoss)
+        self.head = nn.Sequential(
+            nn.Linear(in_features, 1024),
             nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(1024, num_classes),
-            nn.Softmax(dim=1),
+            nn.Dropout(0.3),
+            nn.Linear(1024, num_classes)
         )
 
-        # Replace the last layer of the base model
-        self.base_model.fc = nn.Identity()
-
     def forward(self, x):
-        """Forward pass of the model.
-
-        Args:
-            x: Input data.
-        """
         x = self.base_model(x)
-        x = x.reshape(x.size(0), -1)
-        x = self.fc(x)
-        return x
+        if isinstance(x, tuple):  # Por si el modelo devuelve un tuple
+            x = x[0]
+        if x.dim() > 2:
+            x = x.view(x.size(0), -1)
+        return self.head(x)
 
     def train_model(
         self,
@@ -68,8 +80,9 @@ class CNN(nn.Module):
         criterion,
         epochs,
         scheduler,
+        device,
         nepochs_to_save=10,
-        patience=4
+        patience=4,
     ):
         """Train the model and save the best one based on validation accuracy.
 
@@ -84,7 +97,6 @@ class CNN(nn.Module):
         Returns:
             history: A dictionary with the training history.
         """
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.to(device) # mueve el modelo a la GPU si está disponible
             
         
@@ -107,7 +119,7 @@ class CNN(nn.Module):
             "learning_rate": optimizer.param_groups[0]["lr"],
             "criterion": criterion.__class__.__name__,
             "epochs": epochs,
-            "unfreezed_layers": self.unfreezed_layer,
+            "unfreezed_layers": self.unfreezed_layers,
             "batch_size": train_loader.batch_size,
             "scheduler": scheduler.__class__.__name__,
         })
@@ -209,7 +221,7 @@ class CNN(nn.Module):
             self.load_state_dict(torch.load(best_model_path))
             return history
 
-    def predict(self, data_loader):
+    def predict(self, data_loader, device):
         """Predict the classes of the images in the data loader.
 
         Args:
@@ -218,7 +230,6 @@ class CNN(nn.Module):
         Returns:
             predicted_labels: Predicted classes.
         """
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.to(device)
         
         self.eval()
@@ -288,6 +299,7 @@ def load_data(train_dir, valid_dir, batch_size, img_size):
    
     train_transforms = transforms.Compose(
         [
+            transforms.Grayscale(num_output_channels=3),  # fuerza 3 canales
             transforms.RandomRotation(30),  # Rotate the image by a random angle
             transforms.RandomResizedCrop(
                 img_size
