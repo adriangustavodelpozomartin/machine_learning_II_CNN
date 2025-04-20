@@ -3,7 +3,7 @@ import torch
 import torchvision
 from torchvision import transforms
 from PIL import Image
-from cnn import CNN
+from cnn import CNN, load_model_weights
 
 # Configuración de la app
 st.set_page_config(
@@ -24,12 +24,12 @@ CLASSES = [
 # Función para cargar el modelo (CPU/GPU)
 @st.cache_resource
 def get_model():
+    model_weights = load_model_weights('resnet34_3unfreeze_overfitted')
     model = CNN(torchvision.models.resnet34(weights='DEFAULT'), NUM_CLASSES)
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    state_dict = torch.load('resnet34_3unfreeze_overfitted.pt', map_location=device)
-    model.load_state_dict(state_dict)
-    model.to(device)
+    model.load_state_dict(model_weights)
     model.eval()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
     return model, device
 
 # Transformaciones
@@ -98,5 +98,5 @@ if uploaded_file:
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.caption("Modelo entrenado con ResNet34 - MSc Big Data")
+    st.caption("Arquitectura ResNet34 - MSc Big Data")
 
