@@ -300,9 +300,9 @@ def load_data(train_dir, valid_dir, batch_size, img_size):
     train_transforms = transforms.Compose(
         [
             transforms.Grayscale(num_output_channels=3),  # fuerza 3 canales
-            transforms.RandomRotation(30),  # Rotate the image by a random angle
+            transforms.RandomRotation(20),  # Rotate the image by a random angle
             transforms.RandomResizedCrop(
-                img_size
+                img_size, scale=(0.6, 1.0), ratio=(1, 1)
             ),  # Crop the image to a random size and aspect ratio
             transforms.RandomHorizontalFlip(),  # Horizontally flip the image with a 50% probability
             transforms.ColorJitter(brightness=0.2, contrast=0.2), # Randomly change the brightness and contrast of the image
