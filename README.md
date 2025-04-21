@@ -10,7 +10,6 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 
 ```
 .
-├── __pycache__/  
 ├── dataset/  
 │   ├── training/  
 │   └── validation/  
@@ -21,9 +20,6 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 ├── cnn.py  
 └── test.zip  
 ```
-
-- **`__pycache__/`**  
-  Carpeta generada automáticamente por Python para almacenar archivos compilados (`*.pyc`). 
 
 - **`dataset/`**  
   - `training/`: Imágenes usadas para entrenar el modelo.  
