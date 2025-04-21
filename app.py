@@ -1,9 +1,10 @@
+import os
 import streamlit as st
 import torch
 import torchvision
 from torchvision import transforms
 from PIL import Image
-from cnn import CNN, load_model_weights
+from cnn import CNN
 
 # Configuración de la app
 st.set_page_config(
@@ -21,14 +22,37 @@ CLASSES = [
     'Street', 'Suburb', 'Tall building'
 ]
 
-# Función para cargar el modelo (CPU/GPU)
+# Mapeo de nombres cortos a (archivo de pesos, constructor de modelo)
+MODEL_OPTIONS = {
+    "ResNet34": ("resnet34_3unfreeze.pt", torchvision.models.resnet34),
+    "ResNet50": ("resnet50_3unfreeze_lr1e-4.pt", torchvision.models.resnet50),
+}
+
+# Detectar dispositivo: MPS (Mac) → CUDA → CPU
+def get_device():
+    if torch.backends.mps.is_available():
+        return torch.device("mps")
+    elif torch.cuda.is_available():
+        return torch.device("cuda")
+    else:
+        return torch.device("cpu")
+
+# Función para cargar el modelo (CPU/GPU/MPS)
 @st.cache_resource
-def get_model():
-    model_weights = load_model_weights('resnet34_3unfreeze_overfitted')
-    model = CNN(torchvision.models.resnet34(weights='DEFAULT'), NUM_CLASSES)
-    model.load_state_dict(model_weights)
+def get_model(model_key):
+    weight_file, constructor = MODEL_OPTIONS[model_key]
+    device = get_device()
+
+    # Ruta completa al .pt
+    path = os.path.join("models", weight_file)
+    # Cargar pesos con map_location
+    state_dict = torch.load(path, map_location=device)
+
+    # Instanciar arquitectura y cargar pesos
+    base_model = constructor(weights='DEFAULT')
+    model = CNN(base_model, NUM_CLASSES)
+    model.load_state_dict(state_dict)
     model.eval()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
     return model, device
 
@@ -48,17 +72,20 @@ def predict_image(image, model, device):
         pred_idx = int(torch.argmax(torch.tensor(probs)))
         return pred_idx, probs
 
-# Barra lateral con instrucciones
+# Barra lateral con instrucciones y selector de modelo
 with st.sidebar:
     st.header("Instrucciones")
-    st.write("1. Sube una imagen.")
-    st.write("2. Espera la predicción del modelo.")
-    st.write("3. Observa las probabilidades.")
+    st.write("1. Selecciona el modelo.")
+    st.write("2. Sube una imagen.")
+    st.write("3. Espera la predicción del modelo.")
+    st.write("4. Observa las probabilidades.")
+    st.markdown("---")
+    model_choice = st.selectbox("Modelo", list(MODEL_OPTIONS.keys()))
     st.markdown("---")
     st.write("Desarrollado por *Gonzalo Bobillo, Guillaume Guers, Adrián Gustavo del Pozo, Alberto Sáez-Royuela*")
 
 # Título principal
-st.title("Clasificador de Entornos ")
+st.title("Clasificador de Entornos")
 st.markdown("---")
 
 # Carga de imagen
@@ -70,7 +97,7 @@ if uploaded_file:
     st.markdown("---")
 
     # Obtener modelo y dispositivo
-    model, device = get_model()
+    model, device = get_model(model_choice)
 
     # Predicción
     pred_idx, probs = predict_image(image, model, device)
@@ -82,11 +109,9 @@ if uploaded_file:
 
     # Barras horizontales con Streamlit y HTML (longitud proporcional)
     for cls, p in zip(CLASSES, probs):
-        # Color gradiente rojo->verde
         r = int((1 - p) * 255)
         g = int(p * 255)
         bar_width = int(p * 100)
-        # Render HTML
         st.markdown(f"""
         <div style="display: flex; align-items: center; margin-bottom: 6px;">
           <div style="width: 120px; font-size: 0.9rem;">{cls}</div>
@@ -98,5 +123,4 @@ if uploaded_file:
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.caption("Arquitectura ResNet34 - MSc Big Data")
-
+    st.caption(f"Arquitectura {model_choice} - MSc Big Data")
