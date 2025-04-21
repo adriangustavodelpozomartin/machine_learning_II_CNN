@@ -94,8 +94,9 @@ Esto levantará un servidor local (por defecto en `http://localhost:8501`) con:
 
 ## Resultados
 
-- **Accuracy** final en validación: _XX.X%_  
-- **Mejor modelo**: `resnet_50` con fine‑tuning de las últimas 2 capas.
+- **Accuracy** final en training: _98.69%_
+- **Accuracy** final en validation: _94.87%_ 
+- **Mejor modelo**: `resnet_50` con fine‑tuning de _layer4.0_, _layer4.1_, _layer4.2._.
 
 
 ---
