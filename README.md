@@ -17,7 +17,8 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 ├── wandb/  
 ├── 03Transfer_Learning_def.ipynb  
 ├── app.py  
-├── cnn.py  
+├── cnn.py
+├── environment.yml  
 └── test  
 ```
 
@@ -47,10 +48,10 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 
 ## Instalación
 
-# 3.1) Crea el entorno desde el .yml
+### Crea el entorno desde el .yml
 conda env create -f environment.yml
 
-# 3.2) Actívalo
+### Actívalo
 conda activate ML
 
 ---
