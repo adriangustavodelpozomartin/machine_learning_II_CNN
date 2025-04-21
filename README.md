@@ -47,21 +47,11 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 
 ## Instalación
 
-1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/Canonist.ia.git
-   cd Canonist.ia
-   ```
-2. Crea y activa un entorno virtual:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # macOS/Linux
-   venv\Scripts\activate     # Windows
-   ```
-3. Instala dependencias:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# 3.1) Crea el entorno desde el .yml
+conda env create -f environment.yml
+
+# 3.2) Actívalo
+conda activate <nombre_del_entorno>
 
 ---
 
