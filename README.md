@@ -103,7 +103,7 @@ Esto levantará un servidor local (por defecto en `http://localhost:8501`) con:
 ## Enlaces
 
 - Proyecto en GitHub: https://github.com/adriangustavodelpozomartin/machine_learning_II_CNN/tree/main
-- Weights & Biases dashboard: [`[enlace a tu proyecto wandb]`](https://wandb.ai/guillaume_-universidad-pontificia-comillas)
+- Weights & Biases dashboard: https://wandb.ai/guillaume_-universidad-pontificia-comillas
 
 ---
 
