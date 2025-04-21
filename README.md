@@ -2,7 +2,12 @@
 
 > **The go-to API for your real-estate portal image-classification.**
 
+![Canonist.ia logo](logo.png)
+
 Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobiliarias, que permite etiquetar automáticamente fotografías según su ubicación. Basado en aprendizaje por transferencia con PyTorch, ofrece una web‑app para integración inmediata creada con Streamlit.
+
+
+
 
 ---
 
