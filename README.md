@@ -2,7 +2,7 @@
 
 > **The go-to API for your real-estate portal image-classification.**
 
-Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobiliarias, que permite etiquetar automáticamente fotografías según su ubicación. Basado en aprendizaje por transferencia con PyTorch y Streamlit, ofrece una web‑app para integración inmediata.
+Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobiliarias, que permite etiquetar automáticamente fotografías según su ubicación. Basado en aprendizaje por transferencia con PyTorch, ofrece una web‑app para integración inmediata creada con Streamlit.
 
 ---
 
@@ -94,10 +94,17 @@ Esto levantará un servidor local (por defecto en `http://localhost:8501`) con:
 
 ## Resultados
 
-- **Accuracy** final en training: _98.69%_
-- **Accuracy** final en validation: _94.87%_ 
-- **Mejor modelo**: `resnet_50` con fine‑tuning de _layer4.0_, _layer4.1_, _layer4.2._.
+Los mejores resultados han sido alcanzados realizando un finetuning de modelos Resnet. En ambos casos se han descongelado las 3 últimas capas convolucionales en el entrenamiento.
 
+### Resnet50
+
+- **Accuracy** final en training: _98.69%_
+- **Accuracy** final en validation: _94.87%_
+
+### Resnet34
+
+- **Accuracy** final en training: _99.16%_
+- **Accuracy** final en validation: _94.47%_
 
 ---
 
