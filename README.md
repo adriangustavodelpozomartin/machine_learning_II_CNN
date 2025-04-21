@@ -2,11 +2,11 @@
 
 > **The go-to API for your real-estate portal image-classification.**
 
-Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobiliarias, que permite etiquetar automáticamente fotografías según su ubicación (interior, exterior, fachada, sala, cocina, etc.). Basado en aprendizaje por transferencia con PyTorch y Streamlit, ofrece una API sencilla y un web‑app para integración inmediata.
+Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobiliarias, que permite etiquetar automáticamente fotografías según su ubicación. Basado en aprendizaje por transferencia con PyTorch y Streamlit, ofrece una web‑app para integración inmediata.
 
 ---
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 .
@@ -23,7 +23,7 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 ```
 
 - **`__pycache__/`**  
-  Carpeta generada automáticamente por Python para almacenar archivos compilados (`*.pyc`). Mejora el rendimiento al acelerar la carga de módulos.
+  Carpeta generada automáticamente por Python para almacenar archivos compilados (`*.pyc`). 
 
 - **`dataset/`**  
   - `training/`: Imágenes usadas para entrenar el modelo.  
@@ -49,7 +49,7 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 
 ---
 
-## 🚀 Instalación
+## Instalación
 
 1. Clona este repositorio:
    ```bash
@@ -69,7 +69,7 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 
 ---
 
-## 🛠️ Uso
+## Uso
 
 ### Entrenamiento
 
@@ -88,27 +88,23 @@ streamlit run app.py
 Esto levantará un servidor local (por defecto en `http://localhost:8501`) con:
 - **Subida de imagen**  
 - **Predicción de ubicación**  
-- **Visualización de métricas básicas**
+- **Visualización de probabilidades de predicción**
 
 ---
 
-## 📈 Resultados
+## Resultados
 
 - **Accuracy** final en validación: _XX.X%_  
-- **Mejor modelo**: `efficientnet_b0` con fine‑tuning de las últimas 2 capas.
+- **Mejor modelo**: `resnet_50` con fine‑tuning de las últimas 2 capas.
 
-*(Consultad el notebook para detalle de curvas de entrenamiento y comparativa entre arquitecturas).*
-
----
-
-## 🔗 Enlaces
-
-- Proyecto en GitHub: https://github.com/tu-usuario/Canonist.ia  
-- Weights & Biases dashboard: `[enlace a tu proyecto wandb]`
 
 ---
 
-## 📝 Licencia
+## Enlaces
 
-Este proyecto está bajo la licencia MIT.  
-Visita `LICENSE` para más detalles.
+- Proyecto en GitHub: https://github.com/adriangustavodelpozomartin/machine_learning_II_CNN/tree/main
+- Weights & Biases dashboard: [`[enlace a tu proyecto wandb]`](https://wandb.ai/guillaume_-universidad-pontificia-comillas)
+
+---
+
+
