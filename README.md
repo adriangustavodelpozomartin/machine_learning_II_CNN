@@ -51,7 +51,7 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 conda env create -f environment.yml
 
 # 3.2) Actívalo
-conda activate <nombre_del_entorno>
+conda activate ML
 
 ---
 
