@@ -90,7 +90,7 @@ Esto levantará un servidor local (por defecto en `http://localhost:8501`) con:
 
 ## Resultados
 
-Los mejores resultados han sido alcanzados realizando un finetuning de modelos Resnet. En ambos casos se han descongelado las 3 últimas capas convolucionales en el entrenamiento.
+Los mejores resultados se obtuvieron realizando un fine‑tuning de la última etapa residual de ResNet. Concretamente, se descongelaron únicamente los tres bloques internos del layer4 (layer4.0, layer4.1 y layer4.2) y la cabeza de clasificación, dejando congeladas todas las capas previas.
 
 ### Resnet50
 
