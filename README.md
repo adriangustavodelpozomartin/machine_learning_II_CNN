@@ -18,7 +18,7 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 ├── 03Transfer_Learning_def.ipynb  
 ├── app.py  
 ├── cnn.py  
-└── test.zip  
+└── test  
 ```
 
 - **`dataset/`**  
@@ -40,8 +40,8 @@ Canonist.ia es un servicio de clasificación de imágenes diseñado para inmobil
 - **`cnn.py`**  
   Módulo con la clase `CNN`. Versión extendida para soportar múltiples arquitecturas (ResNet, EfficientNet, Swin, ViT, etc.).
 
-- **`test.zip`**  
-  Paquete con 5 imágenes de prueba usadas durante las demostraciones en clase.
+- **`test`**  
+  Carpeta con 5 imágenes de prueba usadas durante las demostraciones en clase.
 
 ---
 
